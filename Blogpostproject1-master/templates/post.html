@@ -56,7 +56,7 @@
 			</div>
 
 
-			<!-- 🔴 LIKE BURADA ƏLAVƏ EDİLDİ -->
+			<!--  LIKE BURDA -->
 			{% if user.is_authenticated %}
 			<form method="POST" action="{% url 'like_post' post.slug %}" class="mb-6">
 				{% csrf_token %}
@@ -73,7 +73,7 @@
 				Like etmək üçün login olun
 			</p>
 			{% endif %}
-			<!-- 🔴 LIKE BITDI -->
+			<!--  LIKE QUTARDI -->
 
 
 			<!--Post Content-->
