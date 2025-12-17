@@ -144,6 +144,7 @@ def favorite_list(request):
     posts = request.user.favorite_posts.all()
     return render(request, 'favorites.html', {'posts': posts})
 
-
+def more (request):
+    return render(request, 'more.html')
 
 

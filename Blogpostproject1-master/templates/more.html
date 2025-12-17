@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="max-w-xl mx-auto mt-10 p-6 bg-gray-100 rounded-2xl shadow-md text-center">
+    
+    <!-- Mətn -->
+    <p class="text-gray-700 text-lg mb-6">
+        Daha çox məlumat əldə etmək üçün keçid edə bilərsiniz
+    </p>
+
+    <!-- Linklər -->
+    <div class="flex justify-center gap-6">
+
+        <!-- turbo.az -->
+        <a href="https://turbo.az/" target="_blank"
+           class="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition shadow">
+            
+            <!-- turbo icon -->
+            <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current text-red-700">
+                <circle cx="12" cy="12" r="11"/>
+                <path d="M8 7h8v2h-3v8h-2V9H8z" fill="white"/>
+            </svg>
+
+            <span class="font-semibold">turbo.az</span>
+        </a>
+
+        <!-- maşın al -->
+        <a href="https://mashin.al/" target="_blank"
+           class="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition shadow">
+            
+            <!-- maşın icon -->
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
+            <circle cx="12" cy="12" r="11" fill="#E11D2E"/>
+            <text x="50%" y="52%" text-anchor="middle" fill="white" font-size="10" font-family="Arial, sans-serif" font-weight="700" dy=".35em">     
+             M</text>
+            </svg>
+            <span class="font-semibold">Maşın al</span>
+        </a>
+
+    </div>
+</div>
+
+
+
+{% endblock content %}

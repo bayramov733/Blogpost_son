@@ -22,6 +22,7 @@ urlpatterns = [
     path('cars/', views.cars, name='cars'),
     path('post/<slug:slug>/favorite/', views.toggle_favorite, name='toggle_favorite'),
     path('favorites/', views.favorite_list, name='favorite_list'),
+    path('more/', views.more, name='more'),
 
     path("", home_redirect), 
     path("polls/", include("polls.urls")),
