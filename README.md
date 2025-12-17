@@ -1,4 +1,4 @@
-1. Comment əlavə olundu. Postların altına comment əlavə edə bilirsiz.
+1. Comment əlavə olundu.Dizayn verildi. Postların altına comment əlavə edə bilirsiz.
 2. Like əlavə olundu. Postların altında like butonu var like edə bilirsiz(və ya dislike).
 3. Oxunma sayı əlavə olundu. Postlara nə qədər baxıldığını izləyə bilirsiz.
 4. Favourite əlavə olundu. Postları favoriyə əlavə edə bilirsiz.
@@ -10,3 +10,6 @@
 10. Blogpostun öz ikonu dəyişdim.
 11. Navbara tag yazmaq üçün Tag əlavə olundu (admin paneldən əlavə edə bilərsiz). Avtomatik id verir və yazılma tarixi yazılır. Tag-lar arasında search edə bilərsiz.
 12. Navbara Cars əlavə olundu ora favori avtomobillərini və ya gələcəkdə almağı planlaşdırdığın avtomobilləri (istəyə bağlıdı) əlavə edə bilərsiz(admin paneldən). Yazdığınız maşınlar arasında search edə bilərsiz.
+13. Ümumi saytın görünüşü özəlləşdi.
+14. Axtarış verəndə nəticələr özəl loqo ilə çıxır.
+15. more hissəsi əlavə etdim. Daha çox məlumat üçün ora keçid ede ve ordakı linklərdən faydalana bilərsiz.
