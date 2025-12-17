@@ -27,6 +27,7 @@ def post (request,slug):
     post.views += 1
     post.save(update_fields=['views'])
     
+    
     latest = Post.objects.order_by('-timestamp')[:3]
     comments=post.comments.filter(active=True)
     if request.method == 'POST' :
@@ -90,7 +91,15 @@ def allposts(request):
     return render(request, 'all_posts.html', context)
 
 def cars (request):
+    q = request.GET.get('q')
     cars = Car.objects.all()
+
+    if q:
+        cars = cars.filter(
+            Q(name__icontains=q) | Q(surname__icontains=q)
+        )
+
+
     return render(request, 'cars.html', {'cars': cars}) 
 
 def tag_list(request):
@@ -110,11 +119,11 @@ def like_post(request, slug):
     post = get_object_or_404(Post, slug=slug)
 
     if request.user in post.likes.all():
-        post.likes.remove(request.user)
+        post.likes.remove(request.user)   
     else:
-        post.likes.add(request.user)
+        post.likes.add(request.user)      
 
-    return redirect('post_detail', slug=slug)
+    return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
 @login_required
