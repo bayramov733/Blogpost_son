@@ -13,3 +13,4 @@
 13. Ümumi saytın görünüşü özəlləşdi.
 14. Axtarış verəndə nəticələr özəl loqo ilə çıxır.
 15. More hissəsi əlavə etdim. Daha çox məlumat üçün ora keçid ede ve ordakı linklərdən faydalana bilərsiz.
+16. Postların sonunda "Read more"hissəsi əlavə olundu, avtomobillərin rəsmi səhifələrinə kecid edə bilərsiz.
