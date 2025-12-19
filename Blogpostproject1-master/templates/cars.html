@@ -1,25 +1,146 @@
 {% extends 'base.html' %}
-{% block content %}
-    <h1>Maşınların Siyahısı</h1>
 
-    <form method="GET" action="{% url 'cars' %}">
-    <input type="text" name="q" placeholder="Maşın axtar..." />
-    <button type="submit">🔍</button>
+{% block content %}
+
+<style>
+    /* Başlıq */
+    .garage-head {
+        text-align: center;
+        margin: 25px 0;
+        color: #1e3a8a;
+        font-weight: 700;
+        font-size: 2rem;
+    }
+
+    /* Search Panel */
+    .slot-search {
+        position: relative;
+        max-width: 500px;
+        margin: 0 auto 30px;
+    }
+
+    .slot-search input {
+        width: 100%;
+        padding: 15px 50px 15px 25px;
+        border: 2px solid #000000;
+        border-radius: 50px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .slot-search input:focus {
+        border-color: #1e3a8a;
+        box-shadow: 0 0 15px #1e3a8a;
+        outline: none;
+    }
+
+    .search-btn {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #1e3a8a;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: transform 0.2s, background 0.3s;
+    }
+
+    .search-btn:hover {
+        background: #1d4ed8;
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    /* Grid Layout */
+    .garage-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 16px;
+    }
+
+    /* Car Slot Card */
+    .slot {
+        background: #f8fafc;
+        border-radius: 18px;
+        padding: 18px;
+        position: relative;
+        transition: 0.3s;
+    }
+
+    .slot:hover {
+        background: #eef2ff;
+        transform: translateY(-6px);
+    }
+
+    .slot-name {
+        font-weight: 700;
+        color: #1e3a8a;
+    }
+
+    .slot-brand {
+        font-size: 0.85rem;
+        color: #475569;
+        margin-bottom: 8px;
+    }
+
+    .slot-year {
+        font-size: 0.8rem;
+        color: #64748b;
+    }
+
+    .slot-tag {
+        margin-top: 10px;
+        display: inline-block;
+        font-size: 0.75rem;
+        background: #eef2ff;
+        color: #1e3a8a;
+        padding: 5px 12px;
+        border-radius: 14px;
+    }
+
+    /* Boş nəticə */
+    .no-results {
+        text-align: center;
+        color: #b2bec3;
+        font-size: 1.2rem;
+        margin-top: 50px;
+    }
+</style>
+
+<div class="container py-4">
+
+    <h3 class="garage-head">Cars</h3>
+
+    <form method="GET" action="{% url 'cars' %}" class="slot-search">
+        <input type="text" name="q" placeholder="Maşın adı yazın..." value="{{ request.GET.q }}">
+        <button type="submit" class="search-btn">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                 class="bi bi-search" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+            </svg>
+        </button>
     </form>
 
-
-    <table>
-        <tr>
-            <th>Maşının Markası</th>
-            <th>Maşının Adı</th>
-            <th>İstehsal Tarixi</th>
-        </tr>
+    <div class="garage-grid">
         {% for car in cars %}
-        <tr>
-            <td>{{ car.surname }}</td>
-            <td>{{ car.name }}</td>
-            <td>{{ car.date|date:"d/m/Y"  }}</td>
-        </tr>
+        <div class="slot">
+            <div class="slot-name">
+              {{ forloop.counter }}. {{ car.surname }}
+            </div>
+            <div class="slot-brand">{{ car.name }}</div>
+            <div class="slot-year">📅 {{ car.date|date:"d/m/Y" }}</div>
+        </div>
+        {% empty %}
+        <p class="no-results">Hələ maşın yoxdur...</p>
         {% endfor %}
-    </table>
-{% endblock content %}
+    </div>
+
+</div>
+
+{% endblock %}

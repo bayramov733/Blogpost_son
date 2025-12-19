@@ -2,45 +2,91 @@
 
 {% block content %}
 
-<div class="max-w-xl mx-auto mt-10 p-6 bg-gray-100 rounded-2xl shadow-md text-center">
-    
-    <!-- Mətn -->
-    <p class="text-gray-700 text-lg mb-6">
-        Daha çox məlumat əldə etmək üçün keçid edə bilərsiniz
+<style>
+.more-info-card {
+    max-width: 480px;
+    margin: 40px auto;
+    padding: 25px 20px;
+    background: #f8fafc; /* yüngül açıq fon */
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.more-info-card:hover {
+    transform: translateY(-5px);
+}
+
+.more-info-text {
+    color: #475569;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.link-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+
+.link-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #1e3a8a;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: transform 0.2s, background 0.3s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+}
+
+.link-btn:hover {
+    background: #1d4ed8;
+    transform: scale(1.05);
+}
+
+.link-btn svg {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+.link-btn span {
+    font-size: 0.95rem;
+}
+</style>
+
+<div class="more-info-card">
+    <p class="more-info-text">
+        Avtomobil elan platformalarına sürətli keçid.
     </p>
 
-    <!-- Linklər -->
-    <div class="flex justify-center gap-6">
-
+    <div class="link-buttons">
         <!-- turbo.az -->
-        <a href="https://turbo.az/" target="_blank"
-           class="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition shadow">
-            
-            <!-- turbo icon -->
-            <svg viewBox="0 0 24 24" class="w-5 h-5 fill-current text-red-700">
+        <a href="https://turbo.az/" target="_blank" class="link-btn">
+            <svg viewBox="0 0 24 24" class="fill-current text-red-600">
                 <circle cx="12" cy="12" r="11"/>
                 <path d="M8 7h8v2h-3v8h-2V9H8z" fill="white"/>
             </svg>
-
-            <span class="font-semibold">turbo.az</span>
+            <span>turbo.az</span>
         </a>
 
         <!-- maşın al -->
-        <a href="https://mashin.al/" target="_blank"
-           class="flex items-center gap-2 bg-blue-500 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition shadow">
-            
-            <!-- maşın icon -->
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5">
-            <circle cx="12" cy="12" r="11" fill="#E11D2E"/>
-            <text x="50%" y="52%" text-anchor="middle" fill="white" font-size="10" font-family="Arial, sans-serif" font-weight="700" dy=".35em">     
-             M</text>
+        <a href="https://mashin.al/" target="_blank" class="link-btn">
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="12" cy="12" r="11" fill="#E11D2E"/>
+                <text x="50%" y="52%" text-anchor="middle" fill="white" font-size="10" font-family="Arial, sans-serif" font-weight="700" dy=".35em">
+                    M
+                </text>
             </svg>
-            <span class="font-semibold">Maşın al</span>
+            <span>Maşın al</span>
         </a>
-
     </div>
 </div>
-
-
 
 {% endblock content %}

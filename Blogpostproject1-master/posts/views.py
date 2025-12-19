@@ -92,7 +92,7 @@ def allposts(request):
 
 def cars (request):
     q = request.GET.get('q')
-    cars = Car.objects.all()
+    cars = Car.objects.all().order_by('id') 
 
     if q:
         cars = cars.filter(
@@ -106,9 +106,9 @@ def tag_list(request):
     query = request.GET.get('q' , '').strip()
 
     if query:
-        tags = Tag.objects.filter(name__icontains=query)
+        tags = Tag.objects.filter(name__icontains=query).order_by('id')
     else:
-        tags = Tag.objects.all()
+        tags = Tag.objects.all().order_by('id')
 
     return render(request , 'tag_list.html' , {'tag':tags , 'query':query})
 

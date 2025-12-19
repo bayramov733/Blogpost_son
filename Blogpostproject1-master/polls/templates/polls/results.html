@@ -1,9 +1,94 @@
-<h1>{{ question.question_text }}</h1>
+{% extends "polls/base.html" %}
 
-<ul>
-{% for choice in question.choice_set.all %}
-    <li>{{ choice.choice_text }} -- {{ choice.votes }} vote{{ choice.votes|pluralize }}</li>
-{% endfor %}
-</ul>
+{% block title %}{{ question.question_text }}{% endblock %}
 
-<a href="{% url 'polls:detail' question.id %}">Yeniden ses verirsen?</a>
+{% block content %}
+
+<style>
+/* Başlıq */
+.poll-head {
+    text-align: center;
+    color: #1e3a8a;
+    font-weight: 700;
+    font-size: 2rem;
+    margin: 25px 0 30px;
+}
+
+/* Vote list */
+.vote-list {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Individual vote card */
+.vote-card {
+    background: #f8fafc;
+    padding: 14px 18px;
+    border-radius: 16px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.vote-card:hover {
+    background: #eef2ff;
+    transform: translateY(-4px);
+}
+
+/* Choice text */
+.choice-text {
+    font-weight: 600;
+    color: #1e3a8a;
+}
+
+/* Votes badge */
+.vote-count {
+    background: #eef2ff;
+    color: #1e3a8a;
+    padding: 5px 12px;
+    border-radius: 14px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* Button link */
+.revote-btn {
+    display: inline-block;
+    margin: 25px auto 0;
+    padding: 10px 18px;
+    background: #1e3a8a;
+    color: #fff;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.revote-btn:hover {
+    background: #1d4ed8;
+    transform: scale(1.05);
+}
+</style>
+
+<h1 class="poll-head">{{ question.question_text }}</h1>
+
+<div class="vote-list">
+    {% for choice in question.choice_set.all %}
+    <div class="vote-card">
+        <div class="choice-text">{{ choice.choice_text }}</div>
+        <div class="vote-count">{{ choice.votes }} vote{{ choice.votes|pluralize }}</div>
+    </div>
+    {% empty %}
+    <p class="text-center" style="color:#64748b;">Hələ səs verilməyib...</p>
+    {% endfor %}
+</div>
+
+<a href="{% url 'polls:detail' question.id %}" class="revote-btn">Yenidən səs ver</a>
+
+{% endblock %}

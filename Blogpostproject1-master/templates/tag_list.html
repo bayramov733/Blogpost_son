@@ -1,33 +1,181 @@
 {% extends 'base.html' %}
 
-
 {% block content %}
 
-<div class="card mb-3" style="max-width: 540px;">
-    <div class="row g-0">
-        <form method="GET" action="{% url 'tag_list' %}">
-            <input type="text" name="q" placeholder="Tag axtar..." />
-            <button type="submit">🔍</button>
+<style>
+    /* Axtarış Paneli Dizaynı */
+    .search-container {
+        background: #f1f5f9;
+        padding: 2rem 0;
+        border-radius: 15px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        text-align: center;
+    }
+    
+    .search-box {
+        position: relative;
+        max-width: 500px;
+        margin: 0 auto;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 15px 50px 15px 25px;
+        border: 2px solid #000000;
+        border-radius: 50px;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+    }
+
+    .search-input:focus {
+        border-color: #1e3a8a;
+        box-shadow: 0 0 15px #1e3a8a;
+        outline: none;
+    }
+
+    .search-btn {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #1e3a8a;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        cursor: pointer;
+        transition: transform 0.2s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .search-btn:hover {
+        transform: translateY(-50%) scale(1.1);
+        background: #1d4ed8;
+    }
+
+    /* Tag Kart Dizaynı */
+    .tag-card {
+        border: none;
+        border-radius: 15px;
+        background: #f1f5f9;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+        overflow: hidden;
+        position: relative;
+        height: 100%;
+    }
+
+    .tag-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px #1e3a8a;
+    }
+
+    /* Kartın yuxarısındakı rəngli zolaq */
+    .tag-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, #1e3a8a, #1e3a8a);
+    }
+
+    .tag-icon {
+        font-size: 2rem;
+        color: #1e3a8a;
+        opacity: 0.2;
+        position: absolute;
+        top: 10px;
+        right: 15px;
+    }
+
+    .tag-id-badge {
+        background: #eef2ff;
+        color: #1e3a8a;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: bold;
+        display: inline-block;
+        margin-bottom: 10px;
+    }
+
+    .tag-title {
+        font-weight: 700;
+        color: #2d3436;
+        margin-bottom: 5px;
+        text-transform: capitalize;
+    }
+
+    .tag-date {
+        font-size: 0.85rem;
+        color: #1f2020;
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    /* Boş nəticə üçün */
+    .no-results {
+        text-align: center;
+        color: #b2bec3;
+        font-size: 1.2rem;
+        margin-top: 50px;
+    }
+</style>
+
+<div class="container py-5">
+    
+    <div class="search-container">
+        <h3 class="mb-3" style="color: #2d3436;">Tag Axtarış Paneli</h3>
+        <form method="GET" action="{% url 'tag_list' %}" class="search-box">
+            <input type="text" name="q" class="search-input" placeholder="Tag adı yazın..." value="{{ request.GET.q }}">
+            <button type="submit" class="search-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                </svg>
+            </button>
         </form>
-        {% for i in tag %}
-
-      <div class="col-md-4">
-        
-      </div>
-      <div class="col-md-8">
-
-        <div class="card-body">
-            {{i.id}}
-            <h5 class="card-title">{{i.name}}</h5>
-
-          <p class="card-text"><small class="text-body-secondary">Last Update {{i.created_at}}</small></p>
-
-          
-          
-        </div>
-      </div>
     </div>
-  </div>
-{% endfor %}
+
+    <div class="row g-4">
+        {% for i in tag %}
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+            <div class="card tag-card">
+                <div class="card-body p-4">
+                    <span class="tag-icon">#</span>
+
+                    <span class="tag-id-badge">#{{ forloop.counter }}</span>
+
+                    <h4 class="card-title tag-title">{{ i.name }}</h4>
+
+                    <hr style="border-color: #f1f2f6;">
+
+                    <p class="card-text tag-date">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16">
+                            <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+                            <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0z"/>
+                        </svg>
+                        Last Update: {{ i.created_at|date:"d M Y" }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="no-results">
+             <p>Heç bir tag tapılmadı...</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+</div>
 
 {% endblock %}
